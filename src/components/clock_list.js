@@ -1,8 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 
 import Clock from './clock';
-import {loadCookie} from '../actions/index'
+import {loadCookie, sortTimezones} from '../actions/index'
+import './clock_list.css'
+
+const SortableItem = SortableElement(({value}) => {
+  return <li><Clock timezoneName={value} /> </li>;
+});
+
+const SortableList = SortableContainer(({items}) => {
+  return (
+    <ul>
+      {items.map((value, index) => (
+        <SortableItem key={`item-${index}`} index={index} value={value} />
+      ))}
+    </ul>
+  );
+});
 
 class ClockList extends Component{
   constructor(props) {
@@ -22,16 +38,26 @@ class ClockList extends Component{
     );
   }
 
+  /*
   renderClocks() {
     return this.props.timezones.map((name) => {
       return <Clock key={name} timezoneName={name} update={this.state.now} />
     });
   }
+  */
+
+  onSortEnd({oldIndex, newIndex}) {
+    this.props.sortTimezones(oldIndex, newIndex);
+  }
 
   render() {
     return (
       <div>
-        {this.renderClocks()}
+        <SortableList
+          items={this.props.timezones}
+          update={this.state.now}
+          onSortEnd={this.onSortEnd.bind(this)}
+        />
       </div>
     );
   }
@@ -43,4 +69,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {loadCookie})(ClockList);
+export default connect(mapStateToProps, {loadCookie, sortTimezones})(ClockList);

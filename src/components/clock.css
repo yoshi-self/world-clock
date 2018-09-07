@@ -3,6 +3,7 @@
   margin-bottom: 10px;
   background-color: #efefef;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .Clock .clock-name,
@@ -33,7 +34,7 @@
 
 .clock-date {
   font-size: 95%;
-  font-weight: 400;
+  font-weight: 300;
   padding-top: 13px;
   line-height: 1.2;
 }

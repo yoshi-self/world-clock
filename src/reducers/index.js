@@ -1,7 +1,10 @@
 import {combineReducers} from 'redux';
 import Cookies from 'js-cookie';
+import {arrayMove} from 'react-sortable-hoc';
 
-import {ADD_TIMEZONE, DELETE_TIMEZONE, LOAD_COOKIE} from '../actions/index';
+import
+  {ADD_TIMEZONE, DELETE_TIMEZONE, LOAD_COOKIE, SORT_TIMEZONES}
+from '../actions/index';
 
 const timezonesReducer = (state=[], action) => {
   switch(action.type) {
@@ -24,6 +27,13 @@ const timezonesReducer = (state=[], action) => {
     else {
       return state;
     }
+  }
+
+  case SORT_TIMEZONES: {
+    // NOTE: arrayMove uses slice and returns new array
+    const timezones = arrayMove(state, action.payload.oldIndex, action.payload.newIndex);
+    Cookies.set('timezones', timezones);
+    return timezones;
   }
 
   default: 
