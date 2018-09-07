@@ -5,3 +5,8 @@ ul {
 li {
   list-style: none;
 }
+
+.clock-list-loading {
+  color: #3f474f;
+  padding: 10px 5px;
+}
