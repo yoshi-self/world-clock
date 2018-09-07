@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import Clock from './clock';
+import {loadCookie} from '../actions/index'
 
 class ClockList extends Component{
   constructor(props) {
@@ -10,7 +11,9 @@ class ClockList extends Component{
     // For rerendering children
     this.state = {now: Date.now()};
   }
+
   componentDidMount() {
+    this.props.loadCookie();
     this.interval = setInterval(
       () => {
         this.setState({now: Date.now()});
@@ -40,4 +43,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(ClockList);
+export default connect(mapStateToProps, {loadCookie})(ClockList);
