@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment-timezone": "^0.5.21",
     "react": "^16.5.0",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.5",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
