@@ -28,7 +28,7 @@ class Clock extends Component{
 
   render() {
     return (
-      <div className="Clock">
+      <div className="Clock clearfix">
         <div className="clock-name">{this.props.timezoneName}</div>
         <div className="clock-time">{this.getCurrentTime()}</div>
         <div className="clock-date">
