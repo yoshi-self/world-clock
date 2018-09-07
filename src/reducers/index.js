@@ -6,17 +6,19 @@ import
   {ADD_TIMEZONE, DELETE_TIMEZONE, LOAD_COOKIE, SORT_TIMEZONES}
 from '../actions/index';
 
+const COOKIE_EXPIRES = 365 * 5;
+
 const timezonesReducer = (state=[], action) => {
   switch(action.type) {
   case ADD_TIMEZONE: {
     const timezones = [action.payload, ...state];
-    Cookies.set('timezones', timezones);
+    Cookies.set('timezones', timezones, {expires: COOKIE_EXPIRES});
     return timezones;
   }
 
   case DELETE_TIMEZONE: {
     const timezones = state.filter((name) => name !== action.payload);
-    Cookies.set('timezones', timezones);
+    Cookies.set('timezones', timezones, {expires: COOKIE_EXPIRES});
     return timezones;
   }
 
@@ -32,7 +34,7 @@ const timezonesReducer = (state=[], action) => {
   case SORT_TIMEZONES: {
     // NOTE: arrayMove uses slice and returns new array
     const timezones = arrayMove(state, action.payload.oldIndex, action.payload.newIndex);
-    Cookies.set('timezones', timezones);
+    Cookies.set('timezones', timezones, {expires: COOKIE_EXPIRES});
     return timezones;
   }
 
