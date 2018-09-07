@@ -6,15 +6,15 @@ import Clock from './clock';
 import {loadCookie, sortTimezones} from '../actions/index'
 import './clock_list.css'
 
-const SortableItem = SortableElement(({value}) => {
-  return <li><Clock timezoneName={value} /> </li>;
+const SortableItem = SortableElement(({value, update}) => {
+  return <li><Clock timezoneName={value} update={update} /> </li>;
 });
 
-const SortableList = SortableContainer(({items}) => {
+const SortableList = SortableContainer(({items, update}) => {
   return (
     <ul>
       {items.map((value, index) => (
-        <SortableItem key={`item-${index}`} index={index} value={value} />
+        <SortableItem key={`item-${index}`} index={index} value={value} update={update} />
       ))}
     </ul>
   );
@@ -29,13 +29,13 @@ class ClockList extends Component{
   }
 
   componentDidMount() {
-    this.props.loadCookie();
     this.interval = setInterval(
       () => {
         this.setState({now: Date.now()});
       },
       1000
     );
+    this.props.loadCookie();
   }
 
   /*
