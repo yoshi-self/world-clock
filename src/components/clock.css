@@ -24,18 +24,20 @@
 }
 
 .clock-time {
-  font-size: 35px;
+  font-size: 40px;
   font-weight: 200;
   padding-left: 25px;
   padding-right: 12px;
-  padding-top: 5px;
+  padding-top: 4px;
+  font-family: 'Lekton';
 }
 
 .clock-date {
-  font-size: 95%;
+  font-size: 96%;
   font-weight: 300;
-  padding-top: 13px;
+  padding-top: 14px;
   line-height: 1.2;
+  font-family: 'Lekton';
 }
 
 .clock-delete {
