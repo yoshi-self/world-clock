@@ -5,7 +5,7 @@
   "homepage": "http://yoshi-self.github.io/world-clock/",
   "dependencies": {
     "js-cookie": "^2.2.0",
-    "moment-timezone": "^0.5.21",
+    "moment-timezone": "^0.5.35",
     "react": "^16.5.0",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.5.0",
